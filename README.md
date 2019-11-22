@@ -13,6 +13,7 @@ dirs_create.sh
 * PexOmes_raw2gvcf.py
 Main executable python module
 run: python PexOmes_raw2gvcf.py -p dios_project
+
 help: python PexOmes_raw2gvcf.py --help
 
 * dependencies_and_settings.py
