@@ -266,94 +266,94 @@ for samp_id in list(indict.keys()):
 
     time.sleep(0.2)
 
-    # markdups = MarkDuplicates(sample=samp_id,
-    #                           input_bam=aligned_sample+samp_id+".sorted.bam",
-    #                           output_bam_basename=aligned_sample+samp_id+".unique",
-    #                           output_prefix = aligned_sample+samp_id,
-    #                           metrics_filename=aligned_sample+samp_id+".duplicate_metrics",
-    #                           path = runs_sample,
-    #                           jdep = check_last_job(sam2indexed),
-    #                           task="MarkDuplicates",
-    #                           cpu=1,mem="8gb",wtime="15:00:00")
-    #
-    # time.sleep(0.2)
-    #
-    # sortdup = SortSam(sample=samp_id,
-    #                   input_bam=aligned_sample+samp_id+".unique.bam",
-    #                   output_prefix = aligned_sample+samp_id,
-    #                   output_bam_basename=aligned_sample+samp_id+".unique.sorted",
-    #                   path = runs_sample,
-    #                   jdep = check_last_job(markdups), gatk=gatk,
-    #                   cpu=1,mem="5gb",wtime="10:00:00")
-    #
-    # time.sleep(0.2)
-    #
-    # baserec = BaseRecalibrator(sample=samp_id,
-    #                              input_bam=aligned_sample+samp_id+".unique.sorted.bam",
-    #                              recalibration_report_filename=aligned_sample+samp_id+".recal_data.csv",
-    #                              path=runs_sample,
-    #                              jdep = check_last_job(sortdup),
-    #                              task="BaseRecalibrator",
-    #                              dbsnp_vcf=dbsnp_vcf,
-    #                              known_indels_sites_vcfs=known_indels_sites_vcfs,
-    #                              ref_fasta=ref_fasta,
-    #                              gatk=gatk,
-    #                              cpu=1, mem="6gb",wtime="15:00:00")
-    #
-    # time.sleep(0.2)
-    #
-    # ancovar = AnalyzeCovariates(sample=samp_id,
-    #                             recalibration_report_filename=aligned_sample+samp_id+".recal_data.csv",
-    #                             plot_file=aligned_sample+samp_id+".recal_AnalyzeCovariates.pdf",
-    #                             path = runs_sample,
-    #                             jdep = check_last_job(baserec),
-    #                             cpu=1, mem="4gb", wtime="5:00:00")
-    #
-    # time.sleep(0.2)
-    #
-    # applybqsr = ApplyBQSR(sample=samp_id,
-    #                       input_bam=aligned_sample+samp_id+".unique.sorted.bam",
-    #                       output_bam_basename=aligned_sample+samp_id+"_sorted_unique_recalibrated",
-    #                       recalibration_report=aligned_sample+samp_id+".recal_data.csv",
-    #                       output_prefix=aligned_sample+samp_id,
-    #                       path = runs_sample,
-    #                       jdep = check_last_job(baserec),
-    #                       cpu=1,mem="5gb",wtime="10:00:00")
-    #
-    # time.sleep(0.2)
-    #
-    # wgs_metrics = CollectWgsMetrics(sample=samp_id,
-    #                                 input_bam=aligned_sample+samp_id+"_sorted_unique_recalibrated.bam",
-    #                                 metrics_filename=aligned_sample+samp_id+".wgs_metrics",
-    #                                 path = runs_sample,
-    #                                 jdep = check_last_job(applybqsr),
-    #                                 cpu=1, mem="3gb", wtime="5:00:00")
-    #
-    # time.sleep(0.2)
-    #
-    # collect_agg = CollectAggregationMetrics(sample=samp_id,
-    #                                         input_bam=aligned_sample+samp_id+"_sorted_unique_recalibrated.bam",
-    #                                         output_bam_prefix=aligned_sample+samp_id,
-    #                                         path=runs_sample,
-    #                                         jdep=check_last_job(applybqsr),
-    #                                         cpu=1, mem="7gb", wtime="20:00:00")
-    #
-    # time.sleep(0.2)
-    #
-    # hapcall = HaplotypeCaller(sample=samp_id,
-    #                           input_bam=aligned_sample+samp_id+"_sorted_unique_recalibrated.bam",
-    #                           base_file_name=gvcf_sample+samp_id,
-    #                           bamout_base_name=aligned_sample+samp_id,
-    #                           path=runs_sample,
-    #                           jdep=check_last_job(applybqsr),
-    #                           cpu=2, mem="20gb", wtime="100:00:00")
-    #
-    # time.sleep(0.2)
-    #
-    # valvcf = ValidateVCF(sample=samp_id,
-    #                      input_vcf=gvcf_sample+samp_id+"g.vcf.gz",
-    #                      path=runs_sample,
-    #                      jdep=check_last_job(hapcall),
-    #                      cpu=1, mem="4gb",wtime="20:00:00")
+    markdups = MarkDuplicates(sample=samp_id,
+                              input_bam=aligned_sample+samp_id+".sorted.bam",
+                              output_bam_basename=aligned_sample+samp_id+".unique",
+                              output_prefix = aligned_sample+samp_id,
+                              metrics_filename=aligned_sample+samp_id+".duplicate_metrics",
+                              path = runs_sample,
+                              jdep = check_last_job(sam2indexed),
+                              task="MarkDuplicates",
+                              cpu=1,mem="8gb",wtime="15:00:00")
+
+    time.sleep(0.2)
+
+    sortdup = SortSam(sample=samp_id,
+                      input_bam=aligned_sample+samp_id+".unique.bam",
+                      output_prefix = aligned_sample+samp_id,
+                      output_bam_basename=aligned_sample+samp_id+".unique.sorted",
+                      path = runs_sample,
+                      jdep = check_last_job(markdups), gatk=gatk,
+                      cpu=1,mem="5gb",wtime="10:00:00")
+
+    time.sleep(0.2)
+
+    baserec = BaseRecalibrator(sample=samp_id,
+                                 input_bam=aligned_sample+samp_id+".unique.sorted.bam",
+                                 recalibration_report_filename=aligned_sample+samp_id+".recal_data.csv",
+                                 path=runs_sample,
+                                 jdep = check_last_job(sortdup),
+                                 task="BaseRecalibrator",
+                                 dbsnp_vcf=dbsnp_vcf,
+                                 known_indels_sites_vcfs=known_indels_sites_vcfs,
+                                 ref_fasta=ref_fasta,
+                                 gatk=gatk,
+                                 cpu=1, mem="6gb",wtime="15:00:00")
+
+    time.sleep(0.2)
+
+    ancovar = AnalyzeCovariates(sample=samp_id,
+                                recalibration_report_filename=aligned_sample+samp_id+".recal_data.csv",
+                                plot_file=aligned_sample+samp_id+".recal_AnalyzeCovariates.pdf",
+                                path = runs_sample,
+                                jdep = check_last_job(baserec),
+                                cpu=1, mem="4gb", wtime="5:00:00")
+
+    time.sleep(0.2)
+
+    applybqsr = ApplyBQSR(sample=samp_id,
+                          input_bam=aligned_sample+samp_id+".unique.sorted.bam",
+                          output_bam_basename=aligned_sample+samp_id+"_sorted_unique_recalibrated",
+                          recalibration_report=aligned_sample+samp_id+".recal_data.csv",
+                          output_prefix=aligned_sample+samp_id,
+                          path = runs_sample,
+                          jdep = check_last_job(baserec),
+                          cpu=1,mem="5gb",wtime="10:00:00")
+
+    time.sleep(0.2)
+
+    wgs_metrics = CollectWgsMetrics(sample=samp_id,
+                                    input_bam=aligned_sample+samp_id+"_sorted_unique_recalibrated.bam",
+                                    metrics_filename=aligned_sample+samp_id+".wgs_metrics",
+                                    path = runs_sample,
+                                    jdep = check_last_job(applybqsr),
+                                    cpu=1, mem="3gb", wtime="5:00:00")
+
+    time.sleep(0.2)
+
+    collect_agg = CollectAggregationMetrics(sample=samp_id,
+                                            input_bam=aligned_sample+samp_id+"_sorted_unique_recalibrated.bam",
+                                            output_bam_prefix=aligned_sample+samp_id,
+                                            path=runs_sample,
+                                            jdep=check_last_job(applybqsr),
+                                            cpu=1, mem="7gb", wtime="20:00:00")
+
+    time.sleep(0.2)
+
+    hapcall = HaplotypeCaller(sample=samp_id,
+                              input_bam=aligned_sample+samp_id+"_sorted_unique_recalibrated.bam",
+                              base_file_name=gvcf_sample+samp_id,
+                              bamout_base_name=aligned_sample+samp_id,
+                              path=runs_sample,
+                              jdep=check_last_job(applybqsr),
+                              cpu=2, mem="20gb", wtime="100:00:00")
+
+    time.sleep(0.2)
+
+    valvcf = ValidateVCF(sample=samp_id,
+                         input_vcf=gvcf_sample+samp_id+"g.vcf.gz",
+                         path=runs_sample,
+                         jdep=check_last_job(hapcall),
+                         cpu=1, mem="4gb",wtime="20:00:00")
 
 print("Done!")

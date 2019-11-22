@@ -176,7 +176,7 @@ def SamToFastqAndBwaMemAndMba_FromBAM2(sample, input_bam, sam_header, threads, o
         sambamba + " index -t " + str(threads) + " " + output_bam_basename+".sorted.bam;\n\n"+\
         ""\
         'echo "remove";\n'+\
-        'if test -f '+output_bam_basename+'.sorted.bam; then rm '+trimmed_fq_basename+".R*.fastq.gz "+output_fq+" "+output_aligned_sam+" "+output_bam_basename+".bam "+input_bam+"\n\n"\
+        'if test -f '+output_bam_basename+'.sorted.bam; then rm '+trimmed_fq_basename+".R*.fastq.gz "+output_fq+" "+output_aligned_sam+" "+output_bam_basename+".bam "+"\n\n"\
         'fi;\n\n'\
         ""\
         'echo "grep";\n'+\
