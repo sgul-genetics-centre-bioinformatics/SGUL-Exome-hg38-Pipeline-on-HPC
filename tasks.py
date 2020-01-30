@@ -310,7 +310,7 @@ def MarkDuplicates(sample, input_bam, output_bam_basename, metrics_filename, out
 
     path = prepare_submission(path=path,task=task)
 
-    scommand = "java -Xms6g -jar "+gatk+ \
+    scommand = "java -Xms10g -jar "+gatk+ \
         " MarkDuplicates " \
         "--INPUT " + input_bam + " " +\
         "--OUTPUT " + output_bam_basename+".bam "+\

@@ -274,7 +274,7 @@ for samp_id in list(indict.keys()):
                               path = runs_sample,
                               jdep = check_last_job(sam2indexed),
                               task="MarkDuplicates",
-                              cpu=1,mem="8gb",wtime="15:00:00")
+                              cpu=1,mem="30gb",wtime="200:00:00")
 
     time.sleep(0.2)
 
@@ -284,7 +284,7 @@ for samp_id in list(indict.keys()):
                       output_bam_basename=aligned_sample+samp_id+".unique.sorted",
                       path = runs_sample,
                       jdep = check_last_job(markdups), gatk=gatk,
-                      cpu=1,mem="5gb",wtime="10:00:00")
+                      cpu=1,mem="5gb",wtime="50:00:00")
 
     time.sleep(0.2)
 
@@ -298,7 +298,7 @@ for samp_id in list(indict.keys()):
                                  known_indels_sites_vcfs=known_indels_sites_vcfs,
                                  ref_fasta=ref_fasta,
                                  gatk=gatk,
-                                 cpu=1, mem="6gb",wtime="15:00:00")
+                                 cpu=1, mem="8gb",wtime="200:00:00")
 
     time.sleep(0.2)
 
@@ -318,7 +318,7 @@ for samp_id in list(indict.keys()):
                           output_prefix=aligned_sample+samp_id,
                           path = runs_sample,
                           jdep = check_last_job(baserec),
-                          cpu=1,mem="5gb",wtime="10:00:00")
+                          cpu=1,mem="5gb",wtime="100:00:00")
 
     time.sleep(0.2)
 
@@ -346,7 +346,7 @@ for samp_id in list(indict.keys()):
                               bamout_base_name=aligned_sample+samp_id,
                               path=runs_sample,
                               jdep=check_last_job(applybqsr),
-                              cpu=2, mem="20gb", wtime="100:00:00")
+                              cpu=2, mem="20gb", wtime="200:00:00")
 
     time.sleep(0.2)
 
