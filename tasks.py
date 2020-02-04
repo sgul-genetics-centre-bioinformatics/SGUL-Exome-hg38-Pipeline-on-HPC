@@ -402,12 +402,12 @@ def CollectQualityYieldMetrics(sample, input_bam, metrics_filename, path,
 
 
 def AnalyzeCovariates(sample, recalibration_report_filename, plot_file, path, jdep, task="AnalyzeCovariates",
-                      cpu=1, mem="4gb", wtime="5:00:00", gatk=gatk):
+                      cpu=1, mem="4gb", wtime="5:00:00", rpath=rpath, gatk=gatk):
 
     path = prepare_submission(path=path,task=task)
 
-    scommand = "conda activate r-environment; " \
-               "librjava -jar "+gatk+" "+ \
+    scommand = "PATH="+rpath+":$PATH;\n\n"+\
+               "java -jar "+gatk+" "+ \
                "AnalyzeCovariates " \
                "-bqsr "+recalibration_report_filename+" " \
                "-plots "+plot_file

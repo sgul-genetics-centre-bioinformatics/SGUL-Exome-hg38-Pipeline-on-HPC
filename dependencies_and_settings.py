@@ -28,6 +28,7 @@ verifybamid = drive + "/storage/root/homes/dgrigoriadis/resources/verifybamid/1.
 fastp = drive + "anaconda3/bin/fastp"
 fastqc = drive + "anaconda3/bin/fastqc"
 multiqc = drive + "anaconda3/bin/multiqc"
+rpath = drive + "anaconda3/envs/r-environment/bin"
 ###################################
 
 ###################################
